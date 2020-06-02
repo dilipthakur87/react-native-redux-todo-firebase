@@ -9,6 +9,7 @@ import {
     } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
+import {addTodo} from '../actions';
 
 class AddTodo extends Component {
 
@@ -22,7 +23,7 @@ class AddTodo extends Component {
            as this component is connected to the store
         */
         console.log("text in addtodo = ", text)
-        this.props.dispatch({ type: 'ADD_TODO', text })
+        this.props.dispatch(addTodo(text))
         this.setState({ text: '' })
     }
 

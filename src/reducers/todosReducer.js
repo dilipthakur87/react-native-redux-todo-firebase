@@ -1,4 +1,3 @@
-let nextId = 0;
 const todosReducer = (state=[], action) => {
     /*
         Actions here are : 
@@ -10,7 +9,7 @@ const todosReducer = (state=[], action) => {
             console.log("i am add todo = ", action);
             return [
                 ...state, {
-                    id: nextId++,
+                    id: action.id,
                     text: action.text,
                     completed: false
                 }
