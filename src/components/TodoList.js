@@ -7,7 +7,6 @@ import {
     } from 'react-native';
 
 const TodoList = ({ todos, toggleTodo }) => {
-    console.log("todos in TodoList = ", todos)
     return(     
          <View style={{ padding: 20 }}>
                 { todos.map((todo) => 
@@ -24,11 +23,3 @@ const TodoList = ({ todos, toggleTodo }) => {
     }
 
 export default TodoList;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});

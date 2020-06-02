@@ -6,7 +6,6 @@ const todosReducer = (state=[], action) => {
     */
     switch(action.type) {
         case 'ADD_TODO':
-            console.log("i am add todo = ", action);
             return [
                 ...state, {
                     id: action.id,
@@ -16,7 +15,6 @@ const todosReducer = (state=[], action) => {
             ]
 
         case 'TOGGLE_TODO':
-            console.log("i am toggle todo = ", action);
             return state.map(todo => 
                 (todo.id === action.id) ? { ...todo, completed: !todo.completed} : todo
             )

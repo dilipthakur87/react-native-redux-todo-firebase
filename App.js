@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 export default class App extends React.Component{
   render(){
     return (
-
       // the store will be accessible in our TodoApp irrespective of the depth of the level
       <Provider store={store}>
         <TodoApp/>
