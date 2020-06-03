@@ -6,11 +6,12 @@ A basic react native todo app using Redux
   - Splitted reducers to handle different states specifically - Used combineRedcers to combine the different reducers so as to act similar to that of a single reducer to make it more readable
   - Used connect() to connect the React component to a Redux store and then dispatch actions to create the todo
   - Used action creators and action types for proper code management and better readability
+  - Integrated firebase to store, retrieve todos as well as updates firebase while marking status to complete/incomplete
 
 ## Features
 
-  - Add Todos and display the list
-  - Mark todos complete and incomplete
+  - Add Todos and display the list with firebase
+  - Mark todos complete and incomplete with firebase
 
 ### Installation
 
@@ -29,8 +30,8 @@ After this you can scan the qr to run the app on you phone. Make sure you have i
 
 ### Todos
 
- - Integrate Firebase
- - Include CRUD Operations
+ - Delete/Update using firebase
+ - Filter todolist based on the status (completed/incomplete/both)
  - Write tests
 
 License

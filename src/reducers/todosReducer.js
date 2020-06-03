@@ -6,17 +6,22 @@ const todosReducer = (state=[], action) => {
     */
     switch(action.type) {
         case 'ADD_TODO':
+            console.log("I am called = ", action)
             return [
                 ...state, {
                     id: action.id,
                     text: action.text,
-                    completed: false
+                    complete: false
                 }
             ]
 
+        case 'RETRIEVE_TODO':
+            console.log("retrived todos = ", action.todos)
+            return action.todos
+
         case 'TOGGLE_TODO':
             return state.map(todo => 
-                (todo.id === action.id) ? { ...todo, completed: !todo.completed} : todo
+                (todo.id === action.id) ? { ...todo, complete: !todo.complete} : { ...todo, complete: todo.complete}
             )
 
         default:

@@ -9,7 +9,8 @@ import {
     } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import {addTodo} from '../actions';
+import {addTodo, retrieveTodos} from '../actions';
+import { dbRef } from '../config';
 
 class AddTodo extends Component {
 
@@ -17,14 +18,28 @@ class AddTodo extends Component {
         text: ''
     }
 
+    componentDidMount() {
+        dbRef.ref('/todos').on('value', snapshot => {
+          let data = snapshot.val();
+          let items = Object.values(data);
+        //   console.log("items = ", items)
+          this.props.dispatch(retrieveTodos(items))
+        });
+    }
+
     addTodo = (text) => {
         /* update redux store here 
            by easily dispatching action 
            as this component is connected to the store
         */
-        console.log("text in addtodo = ", text)
-        this.props.dispatch(addTodo(text))
-        this.setState({ text: '' })
+        // console.log("text in addtodo = ", text)
+        console.log("addtodo < conatainer = ", text)
+        if(text) {
+            this.props.dispatch(addTodo(text))
+            this.setState({ text: '' })
+        } else {
+            alert("Please enter todo to add")
+        }
     }
 
     render(){
