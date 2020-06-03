@@ -34,6 +34,19 @@ After this you can scan the qr to run the app on you phone. Make sure you have i
  - Filter todolist based on the status (completed/incomplete/both)
  - Write tests
 
+ ### Tips for deleting sensitive file from github and commit history without affecting the local files and features added during same commit.
+
+ **Issue Faced :** I accidently pushed my config file to git without adding it to the gitignore file. I tried to remove it but it still was there in the commit history. So I had to delete that specific file without affecting any feature changes and commit message, from git while reflecting no changes to my local file. 
+ 
+ **How I solved it :**
+ ```sh
+ git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA" \
+  --prune-empty --tag-name-filter cat -- --all
+ git push --force --verbose --dry-run
+ git push --force
+ ```
+
 License
 ----
 
