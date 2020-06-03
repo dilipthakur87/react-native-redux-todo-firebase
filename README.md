@@ -39,6 +39,8 @@ After this you can scan the qr to run the app on you phone. Make sure you have i
  **Issue Faced :** I accidently pushed my config file to git without adding it to the gitignore file. I tried to remove it but it still was there in the commit history. So I had to delete that specific file without affecting any feature changes and commit message, from git while reflecting no changes to my local file. 
  
  **How I solved it :**
+ - Run the following command in the root directory of your project in terminal
+ 
  ```sh
  git filter-branch --force --index-filter \
   "git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA" \
