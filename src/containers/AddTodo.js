@@ -21,9 +21,11 @@ class AddTodo extends Component {
     componentDidMount() {
         dbRef.ref('/todos').once('value', snapshot => {
           let data = snapshot.val();
-          let items = Object.values(data);
-        //   console.log("items = ", items)
-          this.props.dispatch(retrieveTodos(items))
+          if(data) {
+            let items = Object.values(data);
+            console.log("items = ", items)
+            this.props.dispatch(retrieveTodos(items))
+          } 
         });
     }
 

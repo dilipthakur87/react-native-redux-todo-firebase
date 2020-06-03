@@ -1,4 +1,4 @@
-import {ADD_TODO, TOGGLE_TODO, RETRIEVE_TODO} from './actionTypes';
+import {ADD_TODO, TOGGLE_TODO, RETRIEVE_TODO, DELETE_TODO} from './actionTypes';
 import { dbRef } from '../config';
 
 // export const addTodo = (text) => ({
@@ -15,16 +15,14 @@ export const retrieveTodos = ( todos ) => ({
 export const deleteTodo = ( id ) => async dispatch => {
     console.log("Delete = ", id)
     try{
-        dbRef.ref('/todos').child(id).remove().then(() => {
+        dbRef.ref('/todos/' +id).remove().then(() => {
             dispatch({
-                type: ADD_TODO,
-                id: nextID,
-                complete: false,
-                text
+                type: DELETE_TODO,
+                id: id
             })
         }).catch((err) => {
-            alert(`Error adding Todo.`)
-            console.log(`Error adding Todo. Error Message: ${err}`);
+            alert(`Error deleting Todo.`)
+            console.log(`Error deleting Todo. Error Message: ${err}`);
         })
 
     } catch(err){

@@ -5,7 +5,8 @@ import {
     StyleSheet
     } from 'react-native';
 import AddTodo from './containers/AddTodo';
-import VisibleTodos from './containers/VisibleTodos';
+import TodoList from './components/TodoList';
+// import VisibleTodos from './containers/VisibleTodos';
 
 class TodoApp extends Component {
 
@@ -16,7 +17,7 @@ class TodoApp extends Component {
 
                 {/* displays the todo list */}
                 <View>
-                    <VisibleTodos />
+                    <TodoList />
                 </View>
             </View>
         )
