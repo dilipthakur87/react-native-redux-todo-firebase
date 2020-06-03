@@ -28,6 +28,7 @@ export default TodoApp;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 40
+        paddingTop: 40,
+        backgroundColor: '#387490'
     }
 });

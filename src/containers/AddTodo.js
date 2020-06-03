@@ -19,7 +19,7 @@ class AddTodo extends Component {
     }
 
     componentDidMount() {
-        dbRef.ref('/todos').on('value', snapshot => {
+        dbRef.ref('/todos').once('value', snapshot => {
           let data = snapshot.val();
           let items = Object.values(data);
         //   console.log("items = ", items)
@@ -32,7 +32,6 @@ class AddTodo extends Component {
            by easily dispatching action 
            as this component is connected to the store
         */
-        // console.log("text in addtodo = ", text)
         console.log("addtodo < conatainer = ", text)
         if(text) {
             this.props.dispatch(addTodo(text))
@@ -44,8 +43,8 @@ class AddTodo extends Component {
 
     render(){
         return (
-            // <SafeAreaView>
-                <View style={{ flexDirection: 'row', marginHorizontal: 20 }}>
+            <SafeAreaView>
+                <View style={{ flexDirection: 'row', marginHorizontal: 20, margin: 5 }}>
                     <TextInput 
                         placeholder="Eg. Go to the hospital"
                         value = {this.state.text}
@@ -59,7 +58,7 @@ class AddTodo extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-            // </SafeAreaView>
+            </SafeAreaView>
         );
     }
 }
@@ -78,12 +77,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#eaeaea',
         height: 50,
         flex: 1,
-        padding: 5
+        padding: 5,
+        borderRadius: 10
     },
     addButtonView: {
         alignItems: 'center',
+        marginLeft: 5,
         justifyContent: 'center',
         height: 50,
+        borderRadius: 10,
         backgroundColor: '#eaeaea'
     }
 });

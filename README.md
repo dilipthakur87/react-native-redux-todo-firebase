@@ -13,7 +13,7 @@ A basic react native todo app using Redux
   - Add Todos and display the list with firebase
   - Mark todos complete and incomplete with firebase
 
-### Installation
+## Installation
 
 The app was developed with [Node.js](https://nodejs.org/) v12+ .
 
@@ -59,13 +59,13 @@ npm start
 ```
 After this you can scan the qr to run the app on you phone. Make sure you have installed expo client on your phone.
 
-### Todos
+## Todos
 
  - Delete/Update using firebase
  - Filter todolist based on the status (completed/incomplete/both)
  - Write tests
 
- ### Tips for deleting sensitive file from github and commit history without affecting the local files and features added during same commit.
+ ## Tips for deleting sensitive file from github and commit history without affecting the local files and features added during same commit.
 
  **Issue Faced :** I accidently pushed my config file to git without adding it to the gitignore file. I tried to remove it but it still was there in the commit history. So I had to delete that specific file without affecting any feature changes and commit message, from git while reflecting no changes to my local file. 
  

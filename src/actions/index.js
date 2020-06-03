@@ -12,6 +12,27 @@ export const retrieveTodos = ( todos ) => ({
     todos
 })
 
+export const deleteTodo = ( id ) => async dispatch => {
+    console.log("Delete = ", id)
+    try{
+        dbRef.ref('/todos').child(id).remove().then(() => {
+            dispatch({
+                type: ADD_TODO,
+                id: nextID,
+                complete: false,
+                text
+            })
+        }).catch((err) => {
+            alert(`Error adding Todo.`)
+            console.log(`Error adding Todo. Error Message: ${err}`);
+        })
+
+    } catch(err){
+        alert(`Error deleting Todo.`)
+        console.log(`Error deleting Todo. Error Message: ${err}`);
+    }
+}
+
 export const addTodo = ( text ) => async dispatch =>{
     console.log("actions/index = ", text)
     let nextID = Date.now();
@@ -24,6 +45,7 @@ export const addTodo = ( text ) => async dispatch =>{
             dispatch({
                 type: ADD_TODO,
                 id: nextID,
+                complete: false,
                 text
             })
         }).catch((err) => {

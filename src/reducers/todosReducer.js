@@ -3,6 +3,7 @@ const todosReducer = (state=[], action) => {
         Actions here are : 
         1) Add todos
         2) Toggle todos status -> either completed or incomplete
+        3) Retrieve todos
     */
     switch(action.type) {
         case 'ADD_TODO':
@@ -11,7 +12,7 @@ const todosReducer = (state=[], action) => {
                 ...state, {
                     id: action.id,
                     text: action.text,
-                    complete: false
+                    complete: action.complete
                 }
             ]
 
@@ -21,7 +22,7 @@ const todosReducer = (state=[], action) => {
 
         case 'TOGGLE_TODO':
             return state.map(todo => 
-                (todo.id === action.id) ? { ...todo, complete: !todo.complete} : { ...todo, complete: todo.complete}
+                (todo.id === action.id) ? { ...todo, complete: !todo.complete} : todo
             )
 
         default:
