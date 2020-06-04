@@ -1,4 +1,4 @@
-import {ADD_TODO, TOGGLE_TODO, RETRIEVE_TODO, DELETE_TODO} from '../actions/actionTypes';
+import {ADD_TODO, TOGGLE_TODO, RETRIEVE_TODO, DELETE_TODO, UPDATE_TODO} from '../actions/actionTypes';
 
 const todosReducer = (state=[], action) => {
     /*
@@ -6,6 +6,7 @@ const todosReducer = (state=[], action) => {
         1) Add todos
         2) Toggle todos status -> either completed or incomplete
         3) Retrieve todos
+        4) Updata todo
     */
     switch(action.type) {
         case ADD_TODO:
@@ -21,6 +22,11 @@ const todosReducer = (state=[], action) => {
         case RETRIEVE_TODO:
             console.log("retrived todos = ", action.todos)
             return action.todos
+
+        case UPDATE_TODO:
+            return state.map(todo => 
+                (todo.id === action.id) ? { ...todo, text: action.text} : todo
+            )
 
         case DELETE_TODO:
             return state.filter(todo => {if(todo.id !== action.id) return true} ) 

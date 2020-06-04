@@ -1,16 +1,24 @@
-import {ADD_TODO, TOGGLE_TODO, RETRIEVE_TODO, DELETE_TODO} from './actionTypes';
+import {ADD_TODO, TOGGLE_TODO, RETRIEVE_TODO, DELETE_TODO, UPDATE_TODO} from './actionTypes';
 import { dbRef } from '../config';
 
-// export const addTodo = (text) => ({
-//     type: ADD_TODO,
-//     id: Date.now(),
-//     text
-// })
-
-export const retrieveTodos = ( todos ) => ({
-    type: RETRIEVE_TODO,
-    todos
-})
+export const retrieveTodos = () => async dispatch => {
+    try{
+        await dbRef.ref('/todos').once('value', snapshot => {
+            let data = snapshot.val();
+            if(data) {
+              let items = Object.values(data);
+              console.log("items = ", items)
+              dispatch({
+                  type: RETRIEVE_TODO,
+                  todos: items
+              })
+            } 
+        });
+    }catch(err) {
+        alert(`Error retrieving Todos.`)
+        console.log(`Error retrieving Todos. Error Message: ${err}`);
+    }
+}
 
 export const deleteTodo = ( id ) => async dispatch => {
     console.log("Delete = ", id)
@@ -57,6 +65,27 @@ export const addTodo = ( text ) => async dispatch =>{
     }
 }
 
+export const updateTodo = ( text, id ) => async dispatch => {
+    try{
+
+        dbRef.ref('/todos/' +id).update({ text: text }).then((val) => {
+            console.log("updated success = ", val)
+            dispatch({
+                type: UPDATE_TODO,
+                text: text,
+                id: id
+            })
+        }).catch((err) => {
+            alert(`Error updating todo`)
+            console.log(`Error updating todo. Error Message: ${err}`);
+        })
+        
+    }catch(err){
+        alert(`Error updating todo`)
+        console.log(`Error updating todo. Error Message: ${err}`);
+    }
+}
+
 export const toggleTodo = (id) => async dispatch => {
     try{
 
@@ -80,8 +109,3 @@ export const toggleTodo = (id) => async dispatch => {
         console.log(`Error marking completed. Error Message: ${err}`);
     }
 }
-
-// export const toggleTodo = (id) => ({
-//     type: TOGGLE_TODO,
-//     id
-// })

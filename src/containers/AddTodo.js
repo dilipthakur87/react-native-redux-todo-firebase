@@ -10,23 +10,19 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import {addTodo, retrieveTodos} from '../actions';
-import { dbRef } from '../config';
 
 class AddTodo extends Component {
 
-    state = {
-        text: ''
+    constructor(props){
+        super(props);
+        console.log("props in addtodo = ", this.props)
+        this.state = {
+            text: ''
+        }
     }
 
     componentDidMount() {
-        dbRef.ref('/todos').once('value', snapshot => {
-          let data = snapshot.val();
-          if(data) {
-            let items = Object.values(data);
-            console.log("items = ", items)
-            this.props.dispatch(retrieveTodos(items))
-          } 
-        });
+        this.props.retrieveTodos();
     }
 
     addTodo = (text) => {
@@ -36,7 +32,7 @@ class AddTodo extends Component {
         */
         console.log("addtodo < conatainer = ", text)
         if(text) {
-            this.props.dispatch(addTodo(text))
+            this.props.addTodo(text)
             this.setState({ text: '' })
         } else {
             alert("Please enter todo to add")
@@ -65,7 +61,7 @@ class AddTodo extends Component {
     }
 }
 
-export default connect()(AddTodo);
+export default connect(null, { addTodo, retrieveTodos })(AddTodo);
 
 const styles = StyleSheet.create({
     container: {
