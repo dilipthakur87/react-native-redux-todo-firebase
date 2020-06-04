@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextInput, Text, View, TouchableOpacity, Modal, Dimensions, Image, StyleSheet, Switch, Slider } from 'react-native';
+import { TextInput, Text, View, TouchableOpacity, Modal, Dimensions, Image, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
 import Button from './Button';
 import { verticalScale } from 'react-native-size-matters';
 import { updateTodo } from '../actions';
@@ -26,6 +26,8 @@ const UpdateTodo = (props) => {
             transparent={true}
             visible={props.isVisible}
         >
+        <KeyboardAvoidingView style={{ height: '100%' }} behavior={"padding"} >
+
             <View style={{
                 flex: 1,
                 justifyContent: "center",
@@ -77,7 +79,7 @@ const UpdateTodo = (props) => {
                             onChangeText={(value) => setTodo(value)}
                             value={todo}
                         />
-                        
+
                         { /** update changes button */}
                         <Button label={"Update Changes"} onPress={() => submitChanges()}
                             buttonStyle={{
@@ -95,6 +97,8 @@ const UpdateTodo = (props) => {
                     </View>
                 </View>
             </View>
+
+        </KeyboardAvoidingView>
         </Modal>
 
     );
